@@ -1,0 +1,35 @@
+{
+  "name": "infstack",
+  "version": "1.0.0",
+  "description": "Infstack makes javascript be able to use infinite call stack and recursive function.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "set NODE_ENV=production && webpack",
+    "watch": "set NODE_ENV=development && webpack --watch",
+    "test": "node ./example/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lunuy/infstack.git"
+  },
+  "keywords": [
+    "infinite",
+    "recursive",
+    "recursion",
+    "function",
+    "stack",
+    "impure"
+  ],
+  "author": "Lunuy",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/Lunuy/infstack/issues"
+  },
+  "homepage": "https://github.com/Lunuy/infstack#readme",
+  "devDependencies": {
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
