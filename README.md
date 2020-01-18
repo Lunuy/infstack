@@ -8,7 +8,7 @@ That means Infstack supports to use impure function.
 
 ## Install
 ```bash
-npm install babel
+npm install infstack
 ```
 
 ## How It Works
