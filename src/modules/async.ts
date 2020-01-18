@@ -1,7 +1,8 @@
 
 type AsyncFunction = ((...args : any[]) => Promise<any>);
+type RawAsyncFunction = AsyncFunction
 
-async function async(f : AsyncFunction, ...args : any[]) {
+async function async(f : RawAsyncFunction, ...args : any[]) {
 
     /*
     promiseStack : async function들을 호출한 후 받은 Promise들을 쌓아둠, 프로미스[]

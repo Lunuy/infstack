@@ -1,4 +1,4 @@
-const infstack = require("../dist/");
+const infstack = require("../dist");
 
 function normal_sum(n) {
     if(n === 1n) return 1n;

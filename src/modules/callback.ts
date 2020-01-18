@@ -1,13 +1,14 @@
+type RawCallbackFunction = Function;
 
-function callback(f : Function, ...args : any[]) {
+function callback(f : RawCallbackFunction, ...args : any[]) {
     /*
     callbackStack : 함수 호출이 완료되면 불러야 되는 콜백들을 쌓아둠, 콜백[]
     request : 현재 호출해야 되는 함수에 대한 정보, [함수, 인수[], 콜백임?]
     */
-    const callbackStack : Function[] = [];  //콜백들을 넣어둠
+    const callbackStack : RawCallbackFunction[] = [];  //콜백들을 넣어둠
     let request : [Function, any[], Boolean?] = [f, args]; //현재 호출해야 되는 함수
     let lastGetRequested;
-    function get(getF : Function, ...getArgs : any[]) { //함수가 전체 영역에 선언된 이유 : 콜백에서도 같은 get을 이용해서 요청을 할 수 있어야 하기 때문
+    function get(getF : RawCallbackFunction, ...getArgs : any[]) { //함수가 전체 영역에 선언된 이유 : 콜백에서도 같은 get을 이용해서 요청을 할 수 있어야 하기 때문
         //get 요청이 들어오면 할 일
         lastGetRequested = true;
         request = [getF, getArgs];

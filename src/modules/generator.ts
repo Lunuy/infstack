@@ -1,5 +1,6 @@
+type RawGeneratorFunction = GeneratorFunction;
 
-function generator(f : GeneratorFunction, ...args : any[]) {
+function generator(f : RawGeneratorFunction, ...args : any[]) {
     /*
     generatorStack : next를 호출할 generator들을 쌓아놓음, 제너레이터[]
     callbackValue : 현재 next를 호출할때 반환해줄 값
@@ -7,7 +8,7 @@ function generator(f : GeneratorFunction, ...args : any[]) {
     const generatorStack : Generator[] = [f.call(null, get, ...args)];  //콜백들을 넣어둠
     let callbackValue : any; //next 해서 반환해줄 값
     let lastGetRequested;
-    function get(getF : GeneratorFunction, ...getArgs : any[]) {
+    function get(getF : RawGeneratorFunction, ...getArgs : any[]) {
         lastGetRequested = true;
         generatorStack.push(getF.call(null, get, ...getArgs));
     }

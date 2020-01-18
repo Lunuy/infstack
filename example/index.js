@@ -12,10 +12,9 @@ Multiple raw functions can run in same call stack layer. (Raw functions of the s
                => return value
 */
 
-const infstack = require("../dist/");
+const infstack = require("../dist/index.js");
 
 (async () => {
-
     /*
     # Generator
     ⚠️ Don't use "yield" keyword except when use get function. It doesn't support yield.

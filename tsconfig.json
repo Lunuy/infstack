@@ -2,8 +2,14 @@
     "compilerOptions": {
       "outDir": "./dist/",
       "noImplicitAny": true,
-      "module": "ESNext",
+      "module": "commonjs",
       "target": "ES6",
-      "allowJs": true
-    }
+      "allowJs": true,
+      "declaration": true,
+      "rootDir": "src"
+    },
+    "include": [
+      "./src/*",
+      "./src/**/*"
+    ]
 }
