@@ -41,7 +41,7 @@ const infstack = require("../dist/index.js");
     }
     console.log("---generator---");
     console.log(`result : ${generator_fibo(5)}`);
-
+    
 
     /*
     # Callback

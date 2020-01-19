@@ -12,6 +12,9 @@ that means it supports to use impure function.
 ```bash
 npm install infstack
 ```
+```js
+const infstack = require("infstack");
+```
 
 
 ## Methods
@@ -32,7 +35,7 @@ Bad performance, high memory usage, but this is not big problem because it is us
 #### infstack.generator(rawGeneratorFunction, ...args)
 This function executes rawGeneratorFunction with args and return result value.
 #### RawGeneratorFunction, function*(get, ...args) => {}
-RawGeneratorFunction is a GeneratorFunction that like :
+RawGeneratorFunction is a GeneratorFunction like this :
 ```js
 // This function return sum from 1 to n.
 function* raw_sum(get, n) {
@@ -52,7 +55,7 @@ You can't use rawGeneratorFunction as GeneratorFunction, don't use yield keyword
 #### infstack.callback(rawCallbackFunction, ...args)
 This function excutes rawCallbackFunction with args and return result value.
 #### RawCallbackFunction, function(get, ...args) => {}
-RawCallbackFunction is a Function that like :
+RawCallbackFunction is a Function like this :
 ```js
 // This function return sum from 1 to n.
 function* raw_sum(get, n) {
@@ -76,7 +79,7 @@ You can't use rawCallbackFunction like async function.
 #### infstack.async(rawAsyncFunction, ...args)
 This function excutes rawAsyncFunction with args and return result value. (async)
 #### RawAsyncFunction, async function(get, ...args) => {}
-RawAsyncFunction is a AsyncFunction that like :
+RawAsyncFunction is a AsyncFunction like this :
 ```js
 // This function return sum from 1 to n.
 async function raw_sum(get, n) {
@@ -91,6 +94,16 @@ This code executes rawAsyncFunction with args and return result value.
 You must use this code when you want to call rawAsyncFunction(self or other).
 #### Comment
 You can use rawAsyncFunction as AsyncFunction, you can use await keyword.
+
+### Wrap
+You can use wrapped functions for your convenience.
+```js
+const sum = infstack.wrapped.generator(function*(get, n) {
+    if(n === 1n) return 1n;
+    return n + (yield get(sum, n - 1n));
+});
+console.log(sum(1000000n));
+```
 
 ## Example
 ```js

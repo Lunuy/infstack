@@ -1,8 +1,6 @@
+import RawAsyncFunction from "../types/Raw/RawAsyncFunction";
 
-type AsyncFunction = ((...args : any[]) => Promise<any>);
-type RawAsyncFunction = AsyncFunction
-
-async function async(f : RawAsyncFunction, ...args : any[]) {
+async function async(rawAsyncFunction : RawAsyncFunction, ...args : any[]) {
 
     /*
     promiseStack : async function들을 호출한 후 받은 Promise들을 쌓아둠, 프로미스[]
@@ -11,11 +9,11 @@ async function async(f : RawAsyncFunction, ...args : any[]) {
     */
     const promiseStack : Promise<any>[] = [];
     const solveStack : Function[] = [];  //solve들을 넣어둠
-    let request : [Function, any[]] = [f, args];
+    let request : [RawAsyncFunction, any[]] = [rawAsyncFunction, args];
     let lastGetRequested;
     let getRequestPromiseSolve : Function;
     let getRequestPromiseSolved;
-    function get(getF : AsyncFunction, ...getArgs : any[]) {
+    function get(getF : RawAsyncFunction, ...getArgs : any[]) {
         if(getRequestPromiseSolve) { //딴걸 기다리다가 get했다.
             getRequestPromiseSolved = true;
             getRequestPromiseSolve();
@@ -25,8 +23,6 @@ async function async(f : RawAsyncFunction, ...args : any[]) {
         request = [getF, getArgs];
         return new Promise(solve => {solveStack.push(solve);});
     }
-
-    request = [f, args];
 
     while(true) {
         lastGetRequested = false;

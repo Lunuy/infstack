@@ -3,10 +3,21 @@ import generator from "./modules/generator";
 import callback from "./modules/callback";
 import async from "./modules/async";
 
+import wrappedGenerator from "./modules/wrapped/generator";
+import wrappedCallback from "./modules/wrapped/callback";
+import wrappedAsync from "./modules/wrapped/async";
+
+const wrapped = {
+    generator: wrappedGenerator,
+    callback: wrappedCallback,
+    async: wrappedAsync
+};
+
 export {
     generator,
     callback,
-    async
+    async,
+    wrapped
 };
 
 /*
@@ -25,4 +36,12 @@ generator의 yield 기능을 이용합니다.
 # async
 비동기적으로 데이터를 처리합니다.
 await를 이용합니다.
+*/
+
+/*
+아마도 업데이트될 generator 유사 방식 :
+yield 사용 가능 generator.(리얼 generator용 generator).
+
+계산하다가 멈추고 계산하다가 멈추고 하면 될듯.
+자체적인 next를 만들던지 그냥 얘 전체를 generator로 하던지.
 */

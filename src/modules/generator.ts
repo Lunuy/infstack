@@ -1,11 +1,12 @@
-type RawGeneratorFunction = GeneratorFunction;
+import RawGeneratorFunction from "../types/Raw/RawGeneratorFunction";
+import GetRawGeneratorFunction from "../types/Raw/Get/GetRawGeneratorFunction";
 
-function generator(f : RawGeneratorFunction, ...args : any[]) {
+function generator(rawGeneratorFunction : RawGeneratorFunction, ...args : any[]) {
     /*
     generatorStack : next를 호출할 generator들을 쌓아놓음, 제너레이터[]
     callbackValue : 현재 next를 호출할때 반환해줄 값
     */
-    const generatorStack : Generator[] = [f.call(null, get, ...args)];  //콜백들을 넣어둠
+    const generatorStack : Generator[] = [rawGeneratorFunction.call(null, get, ...args)];  //콜백들을 넣어둠
     let callbackValue : any; //next 해서 반환해줄 값
     let lastGetRequested;
     function get(getF : RawGeneratorFunction, ...getArgs : any[]) {
@@ -32,12 +33,3 @@ function generator(f : RawGeneratorFunction, ...args : any[]) {
 }
 
 export default generator;
-
-
-/*
-업데이트될 generator 유사 방식 :
-yield 사용 가능 generator.(리얼 generator용 generator).
-
-계산하다가 멈추고 계산하다가 멈추고 하면 될듯.
-자체적인 next를 만들던지 그냥 얘 전체를 generator로 하던지.
-*/
