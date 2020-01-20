@@ -1,6 +1,6 @@
 {
   "name": "infstack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Infstack makes javascript be able to use infinite call stack and recursive function.",
   "main": "./dist/index.js",
   "scripts": {

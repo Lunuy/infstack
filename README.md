@@ -23,7 +23,7 @@ There are several ways to use infinite call stack :
 Request a function call, and pause code until the function returns using "yield" keyword of generator function.
 Good performance, recommended for general functions.
 ### Callback
-Request a function call, and get returned value with callback. Best performance, but hard to code complex code.
+Request a function call, and get returned value with callback. Good performance, but hard to code complex code.
 ### Async
 Request a function call, and pause code until the function returns using "await" keyword of async function.
 Bad performance, high memory usage, but this is not big problem because it is used to execute async function.
