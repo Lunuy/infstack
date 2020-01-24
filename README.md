@@ -8,7 +8,7 @@ that means it supports to use impure function.
    
 ⚠️ Caution for very heavy function : If javascript engine doesn't have enough memory, it can throw error.
 
-## Install
+# Install
 ```bash
 npm install infstack
 ```
@@ -17,24 +17,24 @@ const infstack = require("infstack");
 ```
 
 
-## Methods
+# Methods
 There are several ways to use infinite call stack :
-### Generator
+## Generator
 Request a function call, and pause code until the function returns using "yield" keyword of generator function.
 Good performance, recommended for general functions.
-### Callback
+## Callback
 Request a function call, and get returned value with callback. Good performance, but hard to code complex code.
-### Async
+## Async
 Request a function call, and pause code until the function returns using "await" keyword of async function.
 Bad performance, high memory usage, but this is not big problem because it is used to execute async function.
 
 
-## Usage
+# Usage
 
-### Generator
-#### infstack.generator(rawGeneratorFunction, ...args)
+## Generator
+### infstack.generator(rawGeneratorFunction, ...args)
 This function executes rawGeneratorFunction with args and return result value.
-#### RawGeneratorFunction, function*(get, ...args) => {}
+### RawGeneratorFunction, function*(get, ...args) => {}
 RawGeneratorFunction is a GeneratorFunction like this :
 ```js
 // This function return sum from 1 to n.
@@ -45,16 +45,16 @@ function* raw_sum(get, n) {
     return n + (yield get(raw_sum, n - 1));
 }
 ```
-##### yield get(rawGeneratorFunction, ...args)
+#### yield get(rawGeneratorFunction, ...args)
 This code executes rawGeneratorFunction with args and return result value.
 You must use this code when you want to call rawGeneratorFunction(self or other).
-#### Cautions
+### Cautions
 You can't use rawGeneratorFunction as GeneratorFunction, don't use yield keyword except when use "yield get(...)" code.
 
-### Callback
-#### infstack.callback(rawCallbackFunction, ...args)
+## Callback
+### infstack.callback(rawCallbackFunction, ...args)
 This function excutes rawCallbackFunction with args and return result value.
-#### RawCallbackFunction, function(get, ...args) => {}
+### RawCallbackFunction, function(get, ...args) => {}
 RawCallbackFunction is a Function like this :
 ```js
 // This function return sum from 1 to n.
@@ -67,18 +67,18 @@ function* raw_sum(get, n) {
     });
 }
 ```
-##### get(rawCallbackFunction, ...args)
+#### get(rawCallbackFunction, ...args)
 This function executes rawCallbackFunction with args.
 You must use this function when you want to call rawCallbackFunction(self or other).
-###### .and(callback)
+##### .and(callback)
 This function executes callback with result value of called rawCallbackFunction.
-#### Cautions
+### Cautions
 You can't use rawCallbackFunction like async function.
 
-### Async
-#### infstack.async(rawAsyncFunction, ...args)
+## Async
+### infstack.async(rawAsyncFunction, ...args)
 This function excutes rawAsyncFunction with args and return result value. (async)
-#### RawAsyncFunction, async function(get, ...args) => {}
+### RawAsyncFunction, async function(get, ...args) => {}
 RawAsyncFunction is a AsyncFunction like this :
 ```js
 // This function return sum from 1 to n.
@@ -89,13 +89,13 @@ async function raw_sum(get, n) {
     return n + (await get(result, n - 1));
 }
 ```
-##### await get(rawAsyncFunction, ...args)
+#### await get(rawAsyncFunction, ...args)
 This code executes rawAsyncFunction with args and return result value.
 You must use this code when you want to call rawAsyncFunction(self or other).
-#### Comment
+### Comment
 You can use rawAsyncFunction as AsyncFunction, you can use await keyword.
 
-### Wrap
+## Wrap
 You can use wrapped functions for your convenience.
 ```js
 const sum = infstack.wrapped.generator(function*(get, n) {
@@ -105,7 +105,7 @@ const sum = infstack.wrapped.generator(function*(get, n) {
 console.log(sum(1000000n));
 ```
 
-## Example
+# Example
 ```js
 const infstack = require("infstack");
 
