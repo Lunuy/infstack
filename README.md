@@ -6,6 +6,8 @@ Infstack makes javascript be able to use infinite call stack and recursive funct
 It works exactly the same as a function in JS,
 that means it supports to use impure function.   
    
+😀 This library is full Unlicense(Dependencies are all Unlicense).   
+   
 ⚠️ Caution for very heavy function : If javascript engine doesn't have enough memory, it can throw error.
 
 ## Install
